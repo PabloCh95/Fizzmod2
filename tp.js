@@ -5,11 +5,21 @@ La función devolverá una promesa. Se espera que dicha promesa, devuelva el res
 En caso de no recibirse un array, se devolverá este mensaje de error: 'Array de entrada no válido'.
 Si el callback no proporciona un tiempo válido, se devolverá 'Tiempo de entrada no válido' 
 */
-const callback1=()=>{
-}
+
 function objectMerge(array, tiempo) {
-  return 
+  //var Promise: PromiseConstructor
+  //new <any>(executor: (resolve: (value: any) => void, reject: (reason?: any) => void) => void) => Promise<any>
+  return new Promise((resolve,reject)=>{
+    if(!Array.isArray(array())){
+      reject("Array de entrada no válido");
+    }else if(typeof tiempo()!=="number" || tiempo<0){
+      reject('Tiempo de entrada no válido');
+    }else if(typeof tiempo() === 'number' && tiempo() > 0 && Array.isArray(array()) ){
+      return setTimeout(() => resolve(Object.assign(...array())), tiempo()*1000);
+    }
+  })
 }
+
 
 /*
 La funcion contador debe retornar una funcion que cuando sea invocada retorne un valor creciente.
@@ -20,7 +30,12 @@ newCounter(); // 1
 newCounter(); // 2
 */
 function contador() {
-  return
+  let cont=0;
+  const addCont=()=>{
+    cont++;
+    return cont;
+  }
+  return addCont;
 }
 
 /*
@@ -38,7 +53,14 @@ Nota: usá un objeto donde cada propiedad sea un argumento, y el valor el result
       usá hasOwnProperty!
 */
 function cacheFunction(cb) {
-  return
+  let valueCache={};
+    const a1=(a)=>{
+        if (!valueCache.hasOwnProperty(a)) {
+          valueCache[a] = cb(a);
+        }
+        return valueCache[a];
+    }
+  return a1;
 }
 
 module.exports = {

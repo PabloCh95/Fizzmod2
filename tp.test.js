@@ -1,5 +1,5 @@
 // /* eslint-disable no-undef */
-const { objectMerge, contador, cacheFunction } = require("../tp");
+const { objectMerge, contador, cacheFunction } = require("./tp");
 
 describe("Test objectMerge", () => {
   it("debería retornar el object merge en el tiempo especificado", async () => {
